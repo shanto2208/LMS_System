@@ -1,0 +1,67 @@
+.container{
+    position:relative;
+    padding: 10px;
+    padding: 10px;
+}
+
+.semester{
+  background-color:azure;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 10px;
+
+}
+
+.semeName{
+  padding: 5px;
+  background-color: rgb(213, 212, 212);
+  border-radius: 10px;
+  
+}
+.semeName1{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.carditme{
+    padding: 10px;
+    
+}
+
+.card-body{
+    /*background-color: rgb(84, 104, 97);*/
+    /*border: 2px solid rgb(64, 153, 87);*/
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.card{
+    /*border: 2px solid rgb(79, 78, 78);*/
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.flex-container {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+  }
+  
+/*.flex-container > div {
+    background-color: #f1f1f1;
+  }*/
+
+.box {
+    padding: 10px;
+    
+  }
+
+.card-text{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}

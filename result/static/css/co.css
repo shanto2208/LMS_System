@@ -1,0 +1,83 @@
+th{
+    text-align: center;
+}
+
+tr{
+  font-size: 15px;
+}
+
+
+.weight{
+    padding-top: 10px;
+}
+
+.flex-container {
+    display: flex;
+    padding: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+  }
+  
+.weight{
+    padding: 10px;
+  }
+
+td{
+  text-align: center;
+  padding: 5px;
+}
+
+.input {
+  outline: hidden;
+  height: 30px;
+  width: 45px;
+}
+
+.weight{
+  font-size: 12px;
+}
+
+.total{
+  color: red;
+}
+
+.mkr{
+  font-size: 25px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.input{
+  font-size: 15px;
+}
+
+.head{
+  height: 80px;
+  width: 100%;
+  background-color: rgb(112, 163, 30);
+  background: -webkit-linear-gradient(right, #76b852, #8DC26F);
+  background: -moz-linear-gradient(right, #76b852, #8DC26F);
+  background: -o-linear-gradient(right, #030602, #8DC26F);
+  background: linear-gradient(to left, #52b8a0, #003375);
+  border-radius: 10px;
+  color: aliceblue;
+
+}
+
+.head1{
+  text-align: center;
+  padding: 10px;
+  
+}
+
+.container{
+  margin-top: 10px;
+}
+
+.box{
+    
+    margin-top: 10px;
+    margin-right: 10px;
+
+    
+}

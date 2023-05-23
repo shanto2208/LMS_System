@@ -1,0 +1,33 @@
+{% extends "teacher_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+        
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    <link href="{% static 'css/.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+    
+</head>  
+
+
+<body>  
+    {% block body %}
+    
+    <div class="container">
+      <h1>hello</h1>
+      
+
+    </div>
+    {% endblock body %}
+</body>  
+
+</html>  

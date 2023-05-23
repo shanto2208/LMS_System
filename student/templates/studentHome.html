@@ -1,0 +1,39 @@
+
+{% extends "student_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+      Student
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+    {% block css %}
+    <link href="{% static 'css/studenthome1.css' %}" rel="stylesheet">
+    {% endblock css %}
+</head>  
+
+<body>  
+    {% block body %}
+    <div class="container">
+
+      <div class="alert alert-primary" role="alert">
+        Welcome to our system
+        
+          {% for student in student_list %} 
+          {% if student.p_email == request.session.name %}
+                {{student.firstName}}
+                {{student.lastName}}   
+          {% endif %}
+        {% endfor %}
+      </div>
+      
+    </div>
+      {% endblock body %}
+</body>  
+
+</html> 

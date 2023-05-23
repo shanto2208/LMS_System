@@ -1,0 +1,25 @@
+.head{
+    height: 80px;
+    width: 100%;
+    background-color: rgb(112, 163, 30);
+}
+
+.head1{
+    text-align: center;
+    padding: 10px;
+}
+
+.container{
+    margin-top: 10px;
+}
+
+
+body {
+    /* Set "my-sec-counter" to 0 */
+    counter-reset: my-sec-counter;
+  }
+  .sl::before {
+    /* Increment "my-sec-counter" by 1 */
+    counter-increment: my-sec-counter;
+    content: "" counter(my-sec-counter) " ";
+  }

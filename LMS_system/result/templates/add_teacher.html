@@ -1,0 +1,141 @@
+{% extends "nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+      Contact
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    <link href="{% static 'css/add_student.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+    
+</head>  
+
+
+<body>  
+    {% block body %}
+    
+    <div class="container">   
+      <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row justify-content-center align-items-center h-100">
+            <div class="col-12 col-lg-9 col-xl-7">
+              <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+                <div class="card-body p-4 p-md-5">
+                  <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Teacher's Registration Form</h3>
+                  <form method="POST">
+                    {% csrf_token %}
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+      
+                        <div class="form-outline">
+                          <input type="text" id="firstName" name="tfirstName" class="form-control form-control-lg" required/>
+                          <label class="form-label" for="firstName">First Name</label>
+                        </div>
+      
+                      </div>
+                      <div class="col-md-6 mb-4">
+      
+                        <div class="form-outline">
+                          <input type="text" id="lastName" name="tlastName" class="form-control form-control-lg" required/>
+                          <label class="form-label" for="lastName">Last Name</label>
+                        </div>
+      
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4">
+                        <div class="form-outline">
+                          <input type="text" id="lastName" name="tCode" class="form-control form-control-lg" required/>
+                          <label class="form-label" for="firstName">Teacher Code</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-6 mb-4 pb-2">
+                        <div class="form-outline">
+                          <input type="text" id="id" name="t_id" class="form-control form-control-lg" required/>
+                          <label class="form-label" for="id">Teacher Id</label>
+                        </div>
+
+                      </div>
+                      <div class="col-md-6 mb-4 pb-2">
+                        <label class="form-label select-label">Gender</label>
+                        <select class="select form-control-lg " name="tgender">
+                          <option value="1" disabled>Gender</option>
+                          <option value="Male">Male</option>
+                          <option value="female">female</option>
+                          <option value="female">others</option>
+                        </select>
+                        
+                      </div>
+                    </div>
+      
+                  
+      
+                    <div class="row">
+                      <div class="col-md-6 mb-4 pb-2">
+      
+                        <div class="form-outline">
+                          <input type="email" id="emailAddress" name="tp_email" class="form-control form-control-lg" required/>
+                          <label class="form-label" for="emailAddress">Email</label>
+                        </div>
+      
+                      </div>
+                      <div class="col-md-6 mb-4 pb-2">
+      
+                        <div class="form-outline">
+                          <input type="tel" id="phoneNumber" name="tphone" class="form-control form-control-lg" required />
+                          <label class="form-label" for="phoneNumber">Phone Number</label>
+                        </div>
+      
+                      </div>
+                    </div>
+    
+      
+                    <div class="row">
+                      <div class="col-12">
+                        <label class="form-label select-label">Department</label>
+                            <select class="select form-control-lg" name="tdep" >
+                            {% for dep in dept_list%}
+                                <option value={{ dep.dept_name }}>{{ dep.dept_name }}</option>
+                            {% endfor %}
+                            </select>
+                        
+                      </div>
+                    </div>
+                    <div class="mt-4 pt-2">
+                      <input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+                    </div>
+
+
+                    <div class="exl">
+                      <a href="{% url 'imporTeacherExcel' %}"><div class="card w3-large">
+                        <p class="card-text"><b>Teacher Registration by Excel file</b></p>
+                      </div></a>
+                    </div>
+                    
+      
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+
+    </div>
+      {% endblock body %}
+</body>  
+
+</html>  

@@ -1,0 +1,32 @@
+.head{
+    height: 80px;
+    width: 100%;
+    background-color: rgb(80 39 102);
+    font-style: Serif;
+    
+  }
+  
+  .head1{
+    text-align: center;
+    padding: 10px;
+    color: aliceblue;
+  }
+
+  body {
+    /* Set "my-sec-counter" to 0 */
+    counter-reset: my-sec-counter;
+  }
+  .sl::before {
+    /* Increment "my-sec-counter" by 1 */
+    counter-increment: my-sec-counter;
+    content: "" counter(my-sec-counter) " ";
+  }
+
+  .container{
+    margin-top:2.5% ;
+
+
+  }
+  .flex{
+    margin-top: 10px;
+  }

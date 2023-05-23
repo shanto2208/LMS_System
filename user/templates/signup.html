@@ -1,0 +1,61 @@
+
+{% extends "user_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+      Home
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'css/signup.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+    
+</head>  
+
+{% block body %}
+<body>  
+    <div class="d-flex justify-content-center">
+        <table>
+            <tr>
+                <td class="td1">
+                    <h3 >Welcome Back ! </h3>
+                    <p> To keep connected with us please login with your personal info</p><br>
+                    <div class="center">
+                        
+                      <a href="{% url 'user_login' %}"><button class="login_btn" >LOGIN</button></a>
+                    
+                    </div>
+
+                </td>
+                <td class="td2">
+                    <h3>Create Account</h3>
+
+                    <form action="." method="POST" >
+                      {% csrf_token %}
+                          <div class="input-group-prepend">
+                              <span class="input-group-text" id="">Email</span>
+                            </div>
+                          <input type="text" name="userEmail" class="form-control">
+                          
+                          <input class="btn btn-info btn-sm" type="submit" value="Submit" />
+                        </div>
+              
+                      </form>
+
+                    
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</body>  
+{% endblock body %}
+</html> 

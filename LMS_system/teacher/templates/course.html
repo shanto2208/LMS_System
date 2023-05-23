@@ -1,0 +1,63 @@
+{% extends "teacher_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+      Teacher
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+    {% block css %}
+      <link href="{% static 'css/course.css' %}" rel="stylesheet">
+    {% endblock css %}
+</head>  
+
+<body>  
+    {% block body %}
+    <div class="container">
+      {% for seme in usersemesterx %}
+        
+        <div class="semester">
+          <div class="semeName">
+            <h5 class="semeName1">{{seme.semestername}}</h5>
+          </div>
+          <div class="flex-container">
+            {% for cls in teacher %}
+              {% if seme.semestername == cls.classSemester %}
+                
+              <div class="box">
+                  <div class="card" style="width: 18rem;">
+
+                    <a class="btn btn-secondary" href="#">
+                    <div class="card-body">
+                      <h5 class="card-title">{{cls.courseCod}} [ {{cls.coursesec}} ] </h5>
+                      <h6 class="card-subtitle mb-2 ">{{cls.dupclassName}} </h6>  
+                      {% for cn1 in cn %}
+                        {% if cn1.courseCode == cls.courseCod %}
+                          <p class="card-text">{{cn1.courseName}}</p>
+                        {% endif %}
+                      {% endfor %}
+                    </div></a>
+                  
+                    <div class="carditme">
+                      <a class="btn btn-danger" href="{% url 'teacherresult' x=cls.classCode %}">Result</a>
+                      <a class="btn btn-success" href="#">upcoming</a>
+                    </div>
+                  
+                  </div>
+                </div>
+              {% endif %}
+            
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    
+    {% endblock body %}
+</body>  
+</html> 

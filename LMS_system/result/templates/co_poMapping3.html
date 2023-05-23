@@ -1,0 +1,134 @@
+{% extends "nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+        
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    <link href="{% static 'css/co_poMapping3.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+    
+</head>  
+
+
+<body>  
+    {% block body %}
+    
+    <div class="container">
+
+
+        
+
+
+
+        <div class="head">
+            <h1 class="head1">CO PO Maping for {{ cc }}</h1>
+        </div>
+
+
+        <div class="noti">
+
+            {% if map_noti == 1 %}
+              <div class="alert alert-danger" role="alert">
+                This CO already exist.
+              </div>
+            {% elif map_noti == 0 %}
+              <div class="alert alert-success" role="alert">
+                 CO add successful.
+              </div>
+              {% elif map_noti == 3 %}
+              <div class="alert alert-danger" role="alert">
+                invalid id.
+              </div>
+              {% elif map_noti == 4 %}
+              <div class="alert alert-danger" role="alert">
+                Id delete successful.
+              </div>
+            {% endif %}
+    
+          </div>
+
+
+
+
+        <div class="row">
+            <div class="col-sm">
+                <div class="idNo">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <label class="form-label"> Select CO  </label>
+                    <div class="input-group mb-3">
+                        
+                        <select class="select form-control-lg" name="copomapingCo" >
+                            
+                            {% for co in cos_list2%}
+                                
+                                    <option value={{ co.co_name }}>{{ co.co_name }}</option>
+
+                            {% endfor %}
+                        </select>
+                      </div>
+                        <label class="form-label"> Select PO for this CO  </label>
+                        <div class="input-group mb-3">
+                        
+                        <select class="select form-control-lg" name="copomapingpo" >
+                            {% for po in po_list%}
+                                <option value={{ po.po_name }}>{{ po.po_name }}</option>
+                            {% endfor %}
+                            </select>
+                        </select>
+                      </div>
+
+                      <div class="input-group-append">
+                            <input class="btn btn-primary btn-sm" type="submit" value="ADD" />
+                      </div>
+                      
+                      
+                    </form>
+                </div>
+
+                
+
+            </div>
+            <div class="col-6">
+                <table class="table table-striped table-dark">
+                    <thead>
+                        <tr align="center">
+                        <th scope="col">Index</th>
+                        
+                        <th scope="col">Course Name</th>
+                        <th scope="col">COs</th>
+                        <th scope="col">POs</th>
+                        <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    {% for cp in copomaping2 %}
+                    <tbody>
+                    <tr align="center">
+                        <td class="sl"> </td>
+                        <td>{{cp.copomapingCc}}</td>
+                        <td>{{cp.copomapingCo}}</td>
+                        <td>{{cp.copomapingpo}}</td>
+                        <td><a class="btn btn-danger sm" href="{% url 'deleteco_poMapping' cc=cp.copomapingCc depname=depname pk=cp.id %}">Delete</a></td>
+                    </tr>
+                  
+                    </tbody>
+                {% endfor %}
+              </table>
+            </div>
+            
+          </div>
+
+    </div>
+      {% endblock body %}
+</body>  
+
+</html>  

@@ -1,0 +1,129 @@
+{% extends "nav.html" %}
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+    {% block title%}
+      Semester
+    {% endblock title%}
+    </title>  
+    {% load static %}
+
+
+
+    {% block css%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'css/resultGreading.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+
+
+</head>  
+
+{% block body %}
+<body>
+
+    <div class="head">
+        <h1 class="head1">Semester</h1> 
+    </div>
+    <div class="container">
+      <div class="noti">
+
+        {% if seme_noti == 0 %}
+          <div class="alert alert-danger" role="alert">
+            This semester already exists .
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+          </div>
+        {% elif seme_noti == 1 %}
+          <div class="alert alert-success" role="alert">
+            Semester add successful.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+          </div>
+        {% endif %}
+
+      </div>
+
+
+
+
+
+
+
+    <div class="row">
+        <div class="col-sm">
+            <div class="part1">
+        
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-row align-items-center">
+                        <div class="col-auto">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Semester Name</div>
+                                </div>
+                                
+                                <select name="name">
+                                    <option value="Summer">Summer</option>
+                                    <option value="Spring">Spring</option>
+                                    <option value="Fall">Fall</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">Year</div>
+                                </div>
+                                <input type="number" name='year' minlength="4" maxlength="4" class="form-control" id="inlineFormInputGroup" placeholder="Second Number">
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-primary mb-2">Add</button>
+                        </div>
+                    </div>
+                </form>
+  
+            </div>
+
+        </div>
+        <div class="col-sm">
+            <div class="part2">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Semester Name</th>
+                            <th scope="col">Delete</th>
+                
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for g in seme %}
+                            <tr>
+                                <th class="sl"> </th>
+                                <th>{{ g.semester }}</th>
+                                
+                                <td><a class="btn btn-danger sm" href="{% url 'deletesemester' pk=g.id %}">Delete</a> </td>
+                            </tr>
+                        {% endfor %}
+              
+                    </tbody>
+                </table>
+            </div>
+      
+        
+        </div>
+        
+
+      </div>
+
+
+        
+{% endblock body %}
+</body>  
+
+</html> 

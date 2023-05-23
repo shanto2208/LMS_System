@@ -1,0 +1,177 @@
+{% extends "teacher_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    
+    <link href="{% static 'css/teacherResult.css' %}" rel="stylesheet"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    {% endblock css%}
+</head>  
+
+
+<body>  
+    {% block body %}
+    
+    <div class="container">
+        <div class="flex-containe">
+        <div class="head">
+          <div class="head1"><h1><b>{{ class3 }} &emsp; Sec- {{class4}} &emsp; {{ assName }} </b></h1>  </div>
+        </div>
+      <div class="noti">
+
+        {% if mark_noti == 1 %}
+        <div class="alert alert-success" role="alert">
+          Update successful.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        
+        {% endif %}
+
+      </div>
+
+      <div class="flex-container">
+        <div class="weight"><a class="btn btn-success " href="{% url 'teacherresult' x=x%}">Result</a></div>
+        <div class="weight"><a class="btn btn-success" href="{% url 'weight' x=x%}">Weight</a></div>
+        <div class="weight"><a class="btn btn-danger" href="{% url 'deleteMark' x=x assName=assName %}">Delete</a></div>
+      </div>
+
+
+      <div class="flex-container">
+
+          {% for ass in exam %}
+  
+            <div class="weight"><a  class="btn btn-info" href="{% url 'assesment' assName=ass.ass_name x=x %}">{{ass.ass_name}}</a></div>
+  
+          {% endfor %}
+      <div class='table'>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              
+              <th scope="col">Instructor</th>
+              <th scope="col" colspan="100">{{firstName}} &nbsp; {{lastName}}</th>
+
+            </tr>
+
+            <tr>
+              
+              <th scope="col">Course Code</th>
+              <th scope="col">{{class3}}</th>
+              <th scope="col">Section {{class4}}</th>
+              <th scope="col" rowspan="2" colspan="100" class="text" >{{ assName }}</th>
+              
+            </tr>
+
+            <tr>
+              
+              <th scope="col" >Course Title</th>
+              <th scope="col" colspan="2" >{{courseName}}</th>
+              
+            </tr>
+
+            <tr>
+              
+              <th scope="col" >Credit</th>
+              <th scope="col" >{{credit}}</th>
+              <th scope="col" >{{classSemester}}</th>
+              {% for co in cos_list2 %}
+                {% for co1 in classco2 %}
+                  {% if co.co_name == co1.classCosname %}
+                    {% for w in weight3 %}
+                      {% if co.co_name == w.co_name %}
+                        <th> {{co.co_name}} </th>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}    
+                {% endfor %}
+              {% endfor %}
+              <th rowspan="2" >Update</th>
+              
+            </tr>
+
+            <tr>
+              
+              <th scope="col" >SL.</th>
+              <th scope="col">Student ID</th>
+              <th scope="col">Name</th>
+
+
+            {% for co in cos_list2 %}
+                {% for co1 in classco2 %}
+                  {% if co.co_name == co1.classCosname %}
+                    {% for w in weight3 %}
+                      {% if co1.classCosname == w.co_name %}
+                        <th> {{w.asses_point}} </th>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}    
+                {% endfor %}
+              {% endfor %}
+                
+              
+              
+              
+            </tr>
+
+          </thead>
+          <tbody>
+          {% for student in student1 %}
+            <tr>
+              <td class="sl"> </td>
+              <th scope="row" class="table-active" >{{ student.stdid }}</th>
+              
+              {% for std in studentName %}
+
+                  {% if std.s_id == student.stdid %}
+                    <th class="table-active" > {{std.firstName}} &nbsp; {{std.lastName}} </th>
+                  {% endif %}
+
+              {% endfor %}
+
+              {% for co in cos_list2 %}
+                {% for co1 in classco2 %}
+                  {% if co.co_name == co1.classCosname %}
+                    {% for std2 in ass2 %}
+                      {% if std2.studentId == student.stdid %}
+                        {% if co.co_name == std2.coName %}
+                          {% for w in weight3 %}
+                            {% if co.co_name == w.co_name %}
+                              <th class="table-dark"> {{std2.mark}} </th>
+                              {% endif %}
+                          {% endfor %}
+                        {% endif %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              {% endfor %}
+
+              <td class="table-success" >  <a class="btn btn-success" href="{% url 'updatresult' x=x s_id=student.stdid assName=assName %}">Update</a> </td>
+
+            </tr>
+          {% endfor %}
+          </tbody>
+
+
+        </table>
+      </div>
+      {% endblock body %}
+
+
+
+</body>  
+
+</html>  

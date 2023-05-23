@@ -1,0 +1,82 @@
+
+th{
+    text-align: center;
+}
+
+.weight{
+    padding-top: 10px;
+}
+
+.flex-container {
+    display: flex;
+    padding: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+.weight{
+    padding: 10px;
+  }
+
+tr{
+  font-size: 15px;
+}
+
+td{
+  text-align: center;
+  padding: 5px;
+}
+
+.input {
+  outline: none;
+  height: 30px;
+  width: 45px;
+}
+
+.weight{
+  font-size: 12px;
+}
+
+.total{
+  color: red;
+}
+
+.mkr{
+  font-size: 25px;
+  font-family: 'Rajdhani', sans-serif;
+}
+
+
+.popup{
+    width: 400px;
+    background-color: rgb(105, 105, 105);
+    border-radius: 6px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    
+    text-align: center;
+    padding: 0 30px 30px;
+    visibility: hidden;
+    
+}
+
+.open-popup{
+    visibility: visible;
+    top: 50%;
+    
+}
+.exT{
+  text-align: center;
+  padding-top: 15px;
+  font-style: oblique;
+
+}
+
+.total{
+  background-color:aliceblue;
+}
+
+.head{
+  margin-top: 10px;
+}

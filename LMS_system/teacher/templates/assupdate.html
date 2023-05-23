@@ -1,0 +1,129 @@
+{% extends "teacher_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    
+    <link href="{% static 'css/updatresult.css' %}" rel="stylesheet"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    {% endblock css%}
+</head>  
+
+
+<body>  
+    {% block body %}
+    
+    <div class="container">
+        <div class="flex-containe">
+            <div class="head">
+              <div class="head1"><h1><b>{{ class3 }} &emsp; Sec- {{class4}} &emsp; {{ assName }} </b></h1>  </div>
+            </div>
+
+            <div class="noti">
+
+                {% if mark_noti == 2 %}
+                  <div class="alert alert-danger" role="alert">
+                    invalid number.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  {% endif %}
+        
+              </div>
+
+
+            <div class="firstpart">
+                <div class="info">
+                {% for std in studentName %}
+
+                  {% if std.s_id == s_id %}
+                    <p>Name : {{std.firstName}}&nbsp;{{std.lastName}} </p>
+                    <p>Id : {{s_id}}</p>
+                  {% endif %}
+
+              {% endfor %}
+                    
+
+                </div>
+
+                <div class="update">
+                    <form method="POST" >
+                    {% csrf_token %}
+                    <table class="table table-bordered">
+                        <thead>
+                        {% for co in cos_list2 %}
+                          {% for co1 in classco2 %}
+                            {% if co.co_name == co1.classCosname %}
+                              <th class="table-dark"> {{co.co_name}} </th>
+                            {% endif %}
+                          {% endfor %}
+                        {% endfor %}
+                        </thead>
+                        <tbody>
+                        {% for co in cos_list2 %}
+                          {% for co1 in classco2 %}
+                            {% if co.co_name == co1.classCosname %}
+                              {% for w in weight3 %}
+            
+                                {% if co.co_name == w.co_name %}
+                                  <th> {{w.asses_point}} </th>
+                                {% endif %}
+            
+                              {% endfor %}
+                            {% endif %}
+                          {% endfor %}
+                        {% endfor %}
+                          
+                        </tbody>
+                        <tbody>
+                              {% for co in cos_list2 %}
+                                {% for co1 in classco2 %}
+                                  {% if co.co_name == co1.classCosname %} 
+                                    {% for std2 in ass3 %}  
+                                      {% if co.co_name == std2.coName %}
+                                        <th><input type="text" name="{{assName}}{{std2.coName}}" id="inputPassword6" class="form-control" value="{{std2.mark}}" aria-describedby="passwordHelpInline"> </th>
+                                      {% endif %}
+                                    {% endfor %}
+                                  {% endif %}
+                                {% endfor %}
+                              {% endfor %}
+                            
+                          
+                            </tbody>
+                            <tbody>
+                                <th><a class="btn btn-danger" href="{% url 'assesment'  x=x assName=assName %}">Back</a>
+                                    <button type="Submit" class="btn btn-success">Save changes</button> </th>
+                                      
+                            </tbody>
+                      </table>
+                    <form>
+                </div>
+   
+            </div>          
+      </div>
+      {% endblock body %}
+
+
+
+</body>  
+
+</html>  
+
+
+
+
+
+
+
+                

@@ -1,0 +1,31 @@
+.head1{
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+  }
+
+  .head{
+    height: 80px;
+    width: 100%;
+    background-color: rgb(31 14 143);
+    color: rgb(2, 101, 186);
+    
+    
+  }
+
+  h1{
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .info{
+    margin-top: 5%;
+    background-color: rgb(181, 150, 216);
+    padding: 20px;
+
+  }
+
+  .update{
+    padding-top: 10px;
+  }

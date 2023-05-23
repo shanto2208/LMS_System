@@ -1,0 +1,51 @@
+
+{% extends "user_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+      Contact
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    <link href="{% static 'css/contact.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+    
+</head>  
+
+
+<body>  
+    {% block body %}
+    
+    <div class="container">
+    <form method="POST">
+      {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+          
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Name</label>
+          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Problem</label>
+            <textarea type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="problem"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
+      </form>
+    </div>
+      {% endblock body %}
+</body>  
+
+</html> 

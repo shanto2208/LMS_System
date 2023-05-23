@@ -1,0 +1,172 @@
+{% extends "teacher_nav.html" %}
+
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+      {% block title%}
+
+      {% endblock title%}
+    </title>  
+    {% load static %}  
+
+    {% block css%}
+    <link href="{% static 'css/teacherResult.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+    
+</head>  
+
+
+<body>  
+    {% block body %}
+    
+    <div class="container">
+      <div class="head">
+        <h1 class="head1">{{ class3}} &emsp; Sec-{{sec}} </h1>
+      </div>
+      <div class="noti">
+
+        {% if noti == 2 %}
+          <div class="alert alert-danger" role="alert">
+            Your total number cross 100.
+          </div>
+        {% elif noti == 1 %}
+          <div class="alert alert-success" role="alert">
+            Assesment add successful.
+          </div>
+        {% endif %}
+
+      </div>
+
+      <div class="flex-container">
+        <div class="weight"><a class="btn btn-danger " href="{% url 'teacherresult' x=x%}">Result</a></div>
+        <div class="weight"><a class="btn btn-info active" href="{% url 'weight' x=x%}">Weight</a></div>
+        
+      </div>
+      <div class="flex-container">
+
+
+        <div class="flex-container">
+
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th colspan="100%" class="mkr">Marks Distribution </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                        <th class="mk"><b>Assignment Items</th>
+                        {% for co in co_lis %}
+                            {% for copo in classco2 %}
+                                  {% if co.co_name == copo.classCosname %}
+                                  
+                                  <th scope="col">{{co.co_name}}</th>
+                                  {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                        <th><b>Weight</th>
+                        <th rowspan="1"><b>Exam Taken in</th>
+                        <th><b>Ratio</th>
+                  </tr>
+                  <form method="POST" >
+                    {% csrf_token %}
+                {% for ex in exam %}
+                    <tr>
+                      <th class="mk"><b>{{ ex.ass_name }}</th>
+                            {% for weight in weight2 %}
+                            {% if ex.ass_name  == weight.asses_name %}
+                              {% for co in co_lis %}
+                                
+                                  {% if co.co_name == weight.co_name %}
+                                    {% for copo in classco2 %}
+                                      {% if co.co_name == copo.classCosname %}
+                                        <th scope="col"><input type="text" name="{{ex.ass_name}}{{ weight.co_name}}" id="inputPassword6" class="form-control" value="{{ weight.asses_point}}" aria-describedby="passwordHelpInline"></th>
+                                      {% endif %}
+                                    {% endfor %}
+                                  {% endif %}
+                              {% endfor %}
+                              {% endif %}
+                            {% endfor %}
+
+                            {% for total2 in total %}
+                              {% if total2.Exam_name == ex.ass_name %}
+                                <th><b>{{total2.wieght}}</th>
+                                <th><b>{{total2.taken}}</th>
+                                <th><b><input type="text" name="{{total2.Exam_name}}" id="inputPassword6" class="form-control" value="{{total2.ratio}}" aria-describedby="passwordHelpInline"></th>
+                              {% endif %}
+                            {% endfor %}
+                            
+                    </tr>
+
+                    
+                    {% endfor %}
+                    <tr>
+                      
+                      <th>Total</th>
+                      {% for total in weightx1 %}
+                        <th colspan="100">{{total.totalweight}}</th>
+                      {% endfor %}
+                    </tr>
+
+                    <tr>
+                      <th colspan="1000"><button type="Submit" class="btn btn-primary">Save changes</button> <th>
+                    </tr>
+                    
+                    <form>
+                    
+
+                    <!-- Button trigger modal -->
+
+
+
+                </tbody>
+                
+              </table>
+              
+        </div>
+        
+      </div>
+
+
+      <script>
+        function validateForm() {
+          var x = document.forms["myForm"]["ass_name"].value;
+
+          var y = document.forms["myForm"]["ass_point"].value;
+          if (x == "" || x == null) {
+            alert("Name must be filled out");
+            return false;
+          }
+
+          if (y == "")
+            {
+              alert("Point must be filled out");
+              return false;
+            }
+        }
+        </script>
+
+        <script>
+          // Get a reference to the button element
+          const button = document.getElementById('my-button');
+        
+          // Attach a click event listener to the button
+          button.addEventListener('click', function() {
+            // Get the value stored in the data-value attribute
+            const value = this.getAttribute('data-value');
+        
+            // Use the value to trigger the pop-up or do something else
+            console.log(value);
+          });
+        </script>
+
+    {% endblock body %}
+
+
+
+</body>  
+
+</html>  

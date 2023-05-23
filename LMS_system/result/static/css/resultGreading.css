@@ -1,0 +1,35 @@
+.head{
+    height: 80px;
+    width: 100%;
+    background-color: rgb(133, 206, 211);
+  }
+  
+  .head1{
+    text-align: center;
+    padding: 10px;
+  }
+
+
+  .container{
+    padding-top: 5%;
+  }
+
+  .part2{
+    
+    background-color: azure;
+    border: 1px solid;
+    
+    box-shadow: 5px 10px #888888;
+    
+  }
+  
+
+  body {
+    /* Set "my-sec-counter" to 0 */
+    counter-reset: my-sec-counter;
+  }
+  .sl::before {
+    /* Increment "my-sec-counter" by 1 */
+    counter-increment: my-sec-counter;
+    content: "" counter(my-sec-counter) " ";
+  }

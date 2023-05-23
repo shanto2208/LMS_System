@@ -1,0 +1,140 @@
+{% extends "nav.html" %}
+{% load static %}
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <title>
+    {% block title%}
+      Department
+    {% endblock title%}
+    </title>  
+    {% load static %}
+
+    {% block css%}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'css/co.css' %}" rel="stylesheet"> 
+    {% endblock css%}
+</head>  
+
+{% block body %}
+<body>
+
+    <div class="head">
+        <h1 class="head1">Program Outcomes of {{ depname }} Department</h1>
+        
+    </div>
+    
+    <div class="container">
+        <div class="noti">
+
+            {% if cp_noti == 0 %}
+              <div class="alert alert-danger" role="alert">
+                {{ co_name }} already exist.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+              </div>
+            {% elif cp_noti == 1 %}
+              <div class="alert alert-success" role="alert">
+                {{ co_name }} add successful.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+              </div>
+            {% endif %}
+    
+          </div>
+        <div class="flex-container">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalLong">ADD Program Outcomes </button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">program Outcomes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form method="POST" name="myForm" onsubmit="return validateForm()" >
+        {% csrf_token %}
+        <div class="modal-body">
+
+          <div class="col-auto">
+            <label for="inputPassword6" class="col-form-label">POs</label>
+          </div>
+          <div class="col-auto">
+            <input type="text" name="po_name" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+          </div>
+
+          <div class="col-auto">
+            <label for="inputPassword6" class="col-form-label"> PO Descriptions </label>
+          </div>
+          <div class="col-auto">
+            <textarea type="text" name="po_descriptions" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"></textarea>
+          </div>
+      
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="Submit" class="btn btn-primary">Save</button> 
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+
+            <div class="flex-container">
+            
+                <div class="box">
+                    <table class="table table-hover">
+                        <thead>
+                          <tr>
+                            <th class="bg-primary">POs</th>
+                            <th class="bg-primary"> PO Descriptions </th>
+                            <th class="bg-primary"> Delete</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for po in  po_list%}
+                            <tr>
+                                <td> {{ po.po_name }} </td>
+                                <td> {{ po.po_descriptions }} </td>
+                                <td> <a class="btn btn-danger btn-sm" href="#">Delete</a> </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+            
+            </div>
+
+     
+
+    </div>
+
+    <script>
+        function validateForm() {
+          var x = document.forms["myForm"]["po_name"].value;
+
+          var y = document.forms["myForm"]["po_descriptions"].value;
+          if (x == "" || x == null) {
+            alert("Name must be filled out");
+            return false;
+          }
+
+          if (y == "")
+            {
+              alert("Descriptions must be filled out");
+              return false;
+            }
+        }
+        </script>
+{% endblock body %}
+</body>  
+
+</html> 
